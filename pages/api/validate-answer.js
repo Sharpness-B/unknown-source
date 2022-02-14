@@ -7,7 +7,7 @@ export default async function validateAnswer(req, res) {
     const title = (req.query.title || (req.body && req.body.title))
 
     const feed = await parser.parseURL(sources[ guess ].rssEndpoint)
-    const article = feed.items.find(e => e.title.includes(title))
+    const article = feed.items.find(e => e.title === title)
 
     const isCorrect = typeof article !== "undefined"
 
