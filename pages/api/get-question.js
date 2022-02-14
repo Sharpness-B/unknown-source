@@ -9,8 +9,10 @@ export default async function getQuestions(req, res) {
     const feed = await parser.parseURL(randomSource.rssEndpoint)
     const randomArticle = feed.items[ feed.items.length * Math.random() << 0 ]
 
+    // res.status(200).json(randomArticle)
     res.status(200).json(
         {
+            alternatives: keys,
             title: randomArticle.title
         }
     )

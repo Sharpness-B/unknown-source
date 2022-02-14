@@ -1,10 +1,11 @@
 export const sources = {
-    nrk: {
-        rssEndpoint: "https://www.nrk.no/toppsaker.rss",
-        titleFormater: null
+    NRK: {
+        rssEndpoint: "https://www.nrk.no/toppsaker.rss"
     },
-    vg: {
-        rssEndpoint: "https://www.vg.no/rss/feed",
-        titleFormater: null
+    VG: {
+        rssEndpoint: "https://www.vg.no/rss/feed"
+    },
+    Aftenposten: {
+        rssEndpoint: "https://www.aftenposten.no/rss"
     }
 };
