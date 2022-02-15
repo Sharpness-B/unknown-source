@@ -93,15 +93,16 @@ function Game() {
         SetScore(0)
         SetRound(r => r+1)
         SetGameState("game")
+        location.href = "#spill";
     }
 
     return <article id={"spill"} className={styles.article}> 
-        <code className={styles.score}>Score: {score}</code>
         
         {gameState !== "finished" ?
             <div>
+                <code className={homeStyles.code}>{!question ? null : `Poeng: ${score}`}</code>
                 <h2>{question}</h2>
-                <code className={homeStyles.code}>{question ? "Hvem har publisert denne overskriften?" : null}</code>
+                <code className={homeStyles.code}>{!question ? null : "Hvem har publisert denne overskriften?"}</code>
                 <div className={styles.sources}>
                     { alternatives.map((source, index) => 
                         <div 
@@ -115,7 +116,7 @@ function Game() {
         : 
             <div>
                 <h2>Du gjettet {score} riktig{score !== 1 ? "e" : null} på rad!</h2>
-                <code>Publiser scoren eller prøv igjen.</code>
+                <code className={homeStyles.code}>Publiser resultatet eller prøv igjen.</code>
                 <div className={styles.sources}>
                     <div className={homeStyles.card} onClick={()=>resetGame()}>Spill igjen</div>
                     <div className={homeStyles.card}>
