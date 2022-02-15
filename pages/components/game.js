@@ -93,8 +93,6 @@ function Game() {
         SetScore(0)
         SetRound(r => r+1)
         SetGameState("game")
-
-        console.log("hei")
     }
 
     return <article id={"spill"} className={styles.article}> 

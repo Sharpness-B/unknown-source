@@ -23,7 +23,7 @@ function Frontpage() {
       </a>
 
       <a
-        href="https://github.com/vercel/next.js/tree/canary/examples"
+        href="https://github.com/Sharpness-B/unknown-source/"
         className={styles.card}
       >
         <h2>Kildekode &rarr;</h2>
