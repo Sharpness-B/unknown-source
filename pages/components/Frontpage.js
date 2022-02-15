@@ -25,6 +25,7 @@ function Frontpage() {
       <a
         href="https://github.com/Sharpness-B/unknown-source/"
         className={styles.card}
+        target="_blank"
       >
         <h2>Kildekode &rarr;</h2>
         <p>Ukjent Kilde har åpen kildekode.</p>
