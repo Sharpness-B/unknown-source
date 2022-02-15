@@ -28,7 +28,6 @@ async function checkAnswer(title, guess) {
 
 function Game() {
     const [gameState, SetGameState] = useState("game")
-    const [selected, SetSelected] = useState("")
 
     const [score, SetScore] = useState(0)
     const [round, SetRound] = useState(0)
@@ -90,27 +89,43 @@ function Game() {
             })
     }
 
+    function resetGame() {
+        SetScore(0)
+        SetRound(r => r+1)
+        SetGameState("game")
+
+        console.log("hei")
+    }
+
     return <article id={"spill"} className={styles.article}> 
         <code className={styles.score}>Score: {score}</code>
         
         {gameState !== "finished" ?
-            <>
-                <div>
-                    <h2>{question}</h2>
-                    <code className={homeStyles.code}>{question ? "Hvem har publisert denne overskriften?" : null}</code>
-                    <div className={styles.sources}>
-                        { alternatives.map((source, index) => 
-                            <div 
-                                key={index} 
-                                ref={elRefs[index]} 
-                                className={homeStyles.card} 
-                                onClick={()=>handleClick(source)}>{source}
-                            </div>) }
-                    </div>
+            <div>
+                <h2>{question}</h2>
+                <code className={homeStyles.code}>{question ? "Hvem har publisert denne overskriften?" : null}</code>
+                <div className={styles.sources}>
+                    { alternatives.map((source, index) => 
+                        <div 
+                            key={index} 
+                            ref={elRefs[index]} 
+                            className={homeStyles.card} 
+                            onClick={()=>handleClick(source)}>{source}
+                        </div>) }
                 </div>
-            </>
+            </div>
         : 
-            null
+            <div>
+                <h2>Du gjettet {score} riktig{score !== 1 ? "e" : null} på rad!</h2>
+                <code>Publiser scoren eller prøv igjen.</code>
+                <div className={styles.sources}>
+                    <div className={homeStyles.card} onClick={()=>resetGame()}>Spill igjen</div>
+                    <div className={homeStyles.card}>
+                        <input type={"text"} placeholder={"brukernavn"} /> 
+                        <div>robot</div>
+                        <button>Send</button></div>
+                </div>
+            </div>
         }
         
     </article>
