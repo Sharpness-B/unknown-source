@@ -14,6 +14,7 @@ function Scoreboard() {
         "Top 10 siste døgn": top24h
     }
 
+    const [update, setUpdate] = useState(0)
     useEffect(() => {
         fetch("api/get-record-list")
             .then(response => response.json())
@@ -21,12 +22,13 @@ function Scoreboard() {
                 setTop10(results.top10)
                 setTop24h(results.top10)
             })
-    }, []) // oppdater hver gang i bildet
+    }, [update]) 
 
-    console.log(top10)
+    setInterval( ()=>setUpdate(n=>n+1), 15000)
 
     return <article id={"toppliste"} className={homeStyles.main}>
         <div>
+            <button className={`${gameStyles.button} ${styles.button} ${styles.orange}`} onClick={()=>setUpdate(n=>n+1)}>Oppdater</button>
             {Object.keys(controller).map((data, index) => <button className={`${gameStyles.button} ${styles.button}`} key={index} onClick={()=>setPage(data)}>{data}</button>)}
         </div>
 
