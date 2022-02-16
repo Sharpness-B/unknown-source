@@ -1,0 +1,32 @@
+import fetch from "node-fetch"
+
+export default async function validateAnswer(req, res) {
+    const secret = process.env.RECAPTCHA_SECRET_KEY
+    
+    const username       = (req.query.username       || (req.body && req.body.username))
+    const recaptchaToken = (req.query.recaptchaToken || (req.body && req.body.recaptchaToken))
+
+    
+
+    const params = `?secret=${secret}&response=${recaptchaToken}`
+
+    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify${params}`, {
+        method: "POST"
+    })
+
+    const result = await response.json()
+    
+    // if invalid recaptcha resonse
+    if (!result.success) {
+        res.status(200).json(
+            {error: "invalid auth"}
+        )
+        return
+    }
+
+    // insert score into db
+
+    res.status(200).json(
+        result
+    )
+}

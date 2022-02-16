@@ -1,7 +1,9 @@
 import styles from '../../styles/Game.module.css'
 import homeStyles from '../../styles/Home.module.css'
-import { useState, useEffect, createRef } from 'react'
+import { useState, useEffect, createRef, useRef } from 'react'
 import cryptoJs from 'crypto-js'
+import Script from 'next/script'
+import ReCAPTCHA from "react-google-recaptcha"
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -29,7 +31,26 @@ async function checkAnswer(title) {
     return result
 }
 
+async function postScore(username, recaptchaToken) {
+    const response = await fetch("api/submit-score", {
+        method: "POST", 
+        body: JSON.stringify( {
+            username: username,
+            recaptchaToken: recaptchaToken
+        } ),
+        headers: {'Content-Type': 'application/json'},
+    })
+
+    const result = await response.json()
+    return result
+}
+
 function Game() {
+    <Script src="https://www.google.com/recaptcha/api.js" async></Script>
+    const recaptchaRef = useRef();
+    const [recaptchaToken, SetRecaptchaToken] = useState("")
+    const [username, SetUsername] = useState("")
+
     const [gameState, SetGameState] = useState("game")
 
     const [score, SetScore] = useState(0)
@@ -99,6 +120,28 @@ function Game() {
         location.href = "#spill";
     }
 
+    async function updateRecaptchaToken() {
+        const token = await recaptchaRef.current.getValue();
+        SetRecaptchaToken(token)
+    }
+
+    function handleSubmit() {
+        if (!recaptchaToken) {
+            alert("Er du en robot?")
+            return
+        }
+        if (!username) {
+            alert("Velg et brukernavn!")
+            return
+        }
+
+        postScore(username, recaptchaToken)
+        
+        delay(500).then(
+            location.href = "#toppliste"
+        )
+    }
+
     return <article id={"spill"} className={styles.article}> 
         
         {gameState !== "finished" ?
@@ -123,9 +166,13 @@ function Game() {
                 <div className={styles.sources}>
                     <div className={homeStyles.card} onClick={()=>resetGame()}>Spill igjen</div>
                     <div className={homeStyles.card}>
-                        <input type={"text"} placeholder={"brukernavn"} /> 
-                        <div>robot</div>
-                        <button>Send</button></div>
+                        <input type={"text"} onChange={(evt)=>SetUsername(evt.target.value)} placeholder={"brukernavn"} /> 
+                        <ReCAPTCHA
+                            ref={recaptchaRef}
+                            onChange={()=>updateRecaptchaToken()}
+                            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                        />
+                        <button onClick={()=>handleSubmit()}>Send</button></div>
                 </div>
             </div>
         }
