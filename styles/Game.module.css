@@ -20,3 +20,27 @@
 .sources * {
     cursor: pointer;
 }
+
+.button, .input {
+    width: 156px
+}
+
+.input {
+    margin-bottom: 7px;
+    outline-color: #0070f3;
+}
+
+.button {
+    background-color: #0070f3;
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem
+}
+
+.cardSubmit {
+    cursor: default!important;
+}

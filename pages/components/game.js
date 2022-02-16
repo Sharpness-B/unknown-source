@@ -31,11 +31,12 @@ async function checkAnswer(title) {
     return result
 }
 
-async function postScore(username, recaptchaToken) {
+async function postScore(username, score, recaptchaToken) {
     const response = await fetch("api/submit-score", {
         method: "POST", 
         body: JSON.stringify( {
             username: username,
+            score: score,
             recaptchaToken: recaptchaToken
         } ),
         headers: {'Content-Type': 'application/json'},
@@ -135,8 +136,8 @@ function Game() {
             return
         }
 
-        postScore(username, recaptchaToken)
-        
+        postScore(username, score, recaptchaToken)
+
         delay(500).then(
             location.href = "#toppliste"
         )
@@ -162,17 +163,26 @@ function Game() {
         : 
             <div>
                 <h2>Du gjettet {score} riktig{score !== 1 ? "e" : null} på rad!</h2>
+                
                 <code className={homeStyles.code}>Publiser resultatet eller prøv igjen.</code>
+
                 <div className={styles.sources}>
+
                     <div className={homeStyles.card} onClick={()=>resetGame()}>Spill igjen</div>
-                    <div className={homeStyles.card}>
-                        <input type={"text"} onChange={(evt)=>SetUsername(evt.target.value)} placeholder={"brukernavn"} /> 
+                    
+                    <div className={`${homeStyles.card} ${styles.cardSubmit}`}>
+                        <input className={styles.input} placeholder={"brukernavn"} type={"text"} onChange={(evt)=>SetUsername(evt.target.value)}/> 
+                        
                         <ReCAPTCHA
+                            size={"compact"}
                             ref={recaptchaRef}
                             onChange={()=>updateRecaptchaToken()}
                             sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                         />
-                        <button onClick={()=>handleSubmit()}>Send</button></div>
+                        
+                        <button className={styles.button} onClick={()=>handleSubmit()}>Send</button>
+                    </div>
+
                 </div>
             </div>
         }
