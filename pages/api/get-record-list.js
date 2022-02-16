@@ -26,7 +26,7 @@ export default async function getRecordList(req, res) {
 
     // top 10 last 24 hours
     const ago24h = new Date( new Date().getTime() - (24*60*60*1000) )
-    const qTop10last24h = query(collection(firestore, "results"), where("timestamp", ">", ago24h), limit(1))
+    const qTop10last24h = query(collection(firestore, "results"), where("timestamp", ">", ago24h), limit(10))
     
     const querySnapshotTop10last24h = await getDocs(qTop10last24h)
 
