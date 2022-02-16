@@ -7,7 +7,7 @@ const { firebaseConfig } = require('./modules/db')
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 
-export default async function validateAnswer(req, res) {
+export default async function submitScore(req, res) {
     const secret = process.env.RECAPTCHA_SECRET_KEY
     
     const username       = (req.query.username       || (req.body && req.body.username))
