@@ -1,6 +1,7 @@
 import styles from '../../styles/Game.module.css'
 import homeStyles from '../../styles/Home.module.css'
 import { useState, useEffect, createRef } from 'react'
+import cryptoJs from 'crypto-js'
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -12,12 +13,14 @@ async function fetchQuestion() {
     return question
 }
 
-async function checkAnswer(title, guess) {
+async function checkAnswer(title) {
+    const encryptionSecret = process.env.NEXT_PUBLIC_CRYOTO_SECRET
+    const encryptedTitle = cryptoJs.AES.encrypt(title, encryptionSecret).toString()
+
     const response = await fetch("api/validate-answer", {
         method: "POST", 
         body: JSON.stringify( {
-            title: title, 
-            // guess: guess
+            encryptedTitle: encryptedTitle
         } ),
         headers: {'Content-Type': 'application/json'},
     })
@@ -58,7 +61,7 @@ function Game() {
         SetGameState("validating")
 
         let correctRef
-        checkAnswer(question, guess)
+        checkAnswer(question)
             .then(result => {
                 correctRef = elRefs[ alternatives.indexOf(result.correct) ]
                 

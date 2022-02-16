@@ -1,10 +1,15 @@
 import { sources } from "./modules/sources"
+import cryptoJs from 'crypto-js'
 import Parser from "rss-parser"
 let parser = new Parser()
 
 export default async function validateAnswer(req, res) {
-    // const guess = (req.query.guess || (req.body && req.body.guess))
-    const title = (req.query.title || (req.body && req.body.title))
+    const encryptedTitle = (req.query.encryptedTitle || (req.body && req.body.encryptedTitle))
+    const encryptionSecret = process.env.NEXT_PUBLIC_CRYOTO_SECRET
+    
+    // decrypt
+    const bytes = cryptoJs.AES.decrypt(encryptedTitle, encryptionSecret)
+    const title = bytes.toString(cryptoJs.enc.Utf8)
 
     let correct
     const keys = Object.keys(sources)
