@@ -24,7 +24,10 @@ function Scoreboard() {
             })
     }, [update]) 
 
-    setInterval( ()=>setUpdate(n=>n+1), 15000)
+    useEffect(() => {
+        setInterval( ()=>setUpdate(n=>n+1), 15000)
+    }, [])
+    
 
     return <article id={"toppliste"} className={homeStyles.main}>
         <div>
