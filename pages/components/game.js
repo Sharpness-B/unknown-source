@@ -143,7 +143,7 @@ function Game() {
         )
     }
 
-    return <article id={"spill"} className={styles.article}> 
+    return <article id={"spill"} className={homeStyles.main}> 
         
         {gameState !== "finished" ?
             <div>

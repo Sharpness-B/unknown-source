@@ -17,7 +17,7 @@ function Frontpage() {
         <p>Tar du utfordringen?<br></br><br></br></p>
       </a>
 
-      <a href="#toppscore" className={styles.card}>
+      <a href="#toppliste" className={styles.card}>
         <h2>Se topplisten &rarr;</h2>
         <p>Hvor mange klarte du å gjette riktig?</p>
       </a>

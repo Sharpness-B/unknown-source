@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 
 import Frontpage from './components/frontpage'
 import Game from './components/game'
+import Scoreboard from './components/scoreboard'
 import Footer from './components/footer'
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
 
       <Frontpage />
       <Game />
+      <Scoreboard />
       <Footer />
     </div>
   )
