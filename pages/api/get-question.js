@@ -1,4 +1,4 @@
-import { sources } from "./modules/sources"
+import { sources } from "./modules/_sources"
 import Parser from "rss-parser"
 let parser = new Parser()
 
