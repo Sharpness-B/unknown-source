@@ -14,13 +14,15 @@ function Scoreboard() {
         "Top 10 siste døgn": top24h
     }
 
+
+
     const [update, setUpdate] = useState(0)
     useEffect(() => {
         fetch("api/get-record-list")
             .then(response => response.json())
             .then(results => {
                 setTop10(results.top10)
-                setTop24h(results.top10)
+                setTop24h(results.top10last24h)
             })
     }, [update]) 
 
@@ -29,6 +31,7 @@ function Scoreboard() {
     }, [])
     
 
+    
     return <article id={"toppliste"} className={homeStyles.main}>
         <div>
             <button className={`${gameStyles.button} ${styles.button} ${styles.orange}`} onClick={()=>setUpdate(n=>n+1)}>Oppdater</button>
