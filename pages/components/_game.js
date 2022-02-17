@@ -96,7 +96,7 @@ function Game() {
                 correctRef.current.style.color       = "#00b500"
                 correctRef.current.style.borderColor = "#00b500"
                 
-                delay(500).then(() => {
+                delay(1000).then(() => {
                     // remove hilighting
                     correctRef.current.style.color       = null
                     correctRef.current.style.borderColor = null
