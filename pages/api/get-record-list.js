@@ -1,6 +1,6 @@
 const { getFirestore, collection, query, where, orderBy, limit, getDocs } = require('firebase/firestore')
 const { initializeApp }  = require('firebase/app')
-const { firebaseConfig } = require('./modules/db')
+const { firebaseConfig } = require('./modules/_db')
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);

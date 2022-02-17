@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-import Frontpage from './components/frontpage'
-import Game from './components/game'
-import Scoreboard from './components/scoreboard'
-import Footer from './components/footer'
+import Frontpage from './components/_Frontpage'
+import Game from './components/_game'
+import Scoreboard from './components/_scoreboard'
+import Footer from './components/_Footer'
 
 export default function Home() {
   return (

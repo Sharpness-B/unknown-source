@@ -2,7 +2,7 @@ import fetch from "node-fetch"
 
 const { getFirestore, doc, getDoc, setDoc } = require('firebase/firestore')
 const { initializeApp }  = require('firebase/app')
-const { firebaseConfig } = require('./modules/db')
+const { firebaseConfig } = require('./modules/_db')
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
