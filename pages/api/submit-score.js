@@ -7,6 +7,10 @@ const { firebaseConfig } = require('./modules/db')
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 
+String.prototype.cleanup = function() {
+    return this.replace(/[^a-zA-Z0-9 ]+/g, "");
+}
+
 export default async function submitScore(req, res) {
     const secret = process.env.RECAPTCHA_SECRET_KEY
     
@@ -35,7 +39,7 @@ export default async function submitScore(req, res) {
     // insert score into db
     const id = recaptchaToken.substr( recaptchaToken.length - 20 )
     const body = {
-        username: username,
+        username: username.cleanup(),
         score: score,
         timestamp: new Date()
     }
