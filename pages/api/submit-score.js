@@ -8,6 +8,8 @@ const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 
 String.prototype.cleanup = function() {
+    if (this.toLowerCase() === "vårin") return this.toString() // Vårin is the only name allowed containing "å"
+
     return this.replace(/[^a-zA-Z0-9 ]+/g, "");
 }
 
