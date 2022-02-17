@@ -96,7 +96,7 @@ function Game() {
                 correctRef.current.style.color       = "#00b500"
                 correctRef.current.style.borderColor = "#00b500"
                 
-                delay(1000).then(() => {
+                delay(500).then(() => {
                     // remove hilighting
                     correctRef.current.style.color       = null
                     correctRef.current.style.borderColor = null
@@ -138,9 +138,7 @@ function Game() {
 
         postScore(username, score, recaptchaToken)
 
-        delay(500).then(
-            location.href = "#toppliste"
-        )
+        location.href = "#toppliste"
     }
 
     return <article id={"spill"} className={homeStyles.main}> 
