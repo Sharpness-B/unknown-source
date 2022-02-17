@@ -1,6 +1,6 @@
 Guess Norwegian news sources given the latest top headlines! How biased is the news? Can you differentiate them?
 
-Give it a go at [https://ukjent-kilde.vercel.app/](https://ukjent-kilde.vercel.app/)
+Give it a go at [ukjent-kilde-sharpness-b.vercel.app](ukjent-kilde-sharpness-b.vercel.app)
 
 ## Architecture
 Made using next.js, recaptcha and firebase in 3 evenings:)
