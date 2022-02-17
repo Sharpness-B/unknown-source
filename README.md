@@ -1,7 +1,7 @@
 Guess Norwegian news sources given the latest top headlines! How biased is the news? Can you differentiate them?
 
 ## Architecture
-Made using next.js and firebase in 3 evenings:)
+Made using next.js, recaptcha and firebase in 3 evenings:)
 ![architecture](readme_images/architecture.png?raw=true)
 
 ## Demo
