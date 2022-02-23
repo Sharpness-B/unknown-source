@@ -54,7 +54,7 @@ async function postScore(username, score, recaptchaToken, quiz) {
     return result
 }
 
-function Game({quiz}) {
+function Game({quiz, language}) {
     <Script src="https://www.google.com/recaptcha/api.js" async></Script>
     const recaptchaRef = useRef();
     const [recaptchaToken, SetRecaptchaToken] = useState("")
@@ -152,13 +152,57 @@ function Game({quiz}) {
         location.href = "#toppliste"
     }
 
+
+    const content = {
+        score: {
+            no: "Poeng",
+            en: "Score"
+        },
+        who: {
+            no: "Hvem har publisert denne overskriften?",
+            en: "Who published this headline?"
+        },
+
+        youGuessed: {
+            no: "Du gjettet",
+            en: "You guessed"
+        },
+        singularcorretinarow: {
+            no: "riktig på rad!",
+            en: "correct in a row!"
+        },
+        pluralcorretinarow: {
+            no: "riktige på rad!",
+            en: "correct in a row!"
+        },
+
+        publish: {
+            no: "Publiser resultatet eller prøv igjen.",
+            en: "Publish the result or try again."
+        },
+
+        again: {
+            no: "Spill igjen",
+            en: "Play again"
+        },
+
+        username: {
+            no: "brukernavn",
+            en: "username"
+        },
+        submit: {
+            no: "Send",
+            en: "Submit"
+        },
+    }
+
     return <article id={"spill"} className={homeStyles.main}> 
         
         {gameState !== "finished" ?
             <div>
-                <code className={homeStyles.code}>{!question ? null : `Poeng: ${score}`}</code>
+                <code className={homeStyles.code}>{!question ? null : `${content.score[language]}: ${score}`}</code>
                 <h2>{question}</h2>
-                <code className={homeStyles.code}>{!question ? null : "Hvem har publisert denne overskriften?"}</code>
+                <code className={homeStyles.code}>{!question ? null : content.who[language]}</code>
                 <div className={styles.sources}>
                     { alternatives.map((source, index) => 
                         <div 
@@ -171,16 +215,16 @@ function Game({quiz}) {
             </div>
         : 
             <div>
-                <h2>Du gjettet {score} riktig{score !== 1 ? "e" : null} på rad!</h2>
+                <h2>{content.youGuessed[language]} {score} {score !== 1 ? content.pluralcorretinarow[language] : content.singularcorretinarow[language]}</h2> {/*  riktig{score !== 1 ? "e" : null} på rad! */}
                 
-                <code className={homeStyles.code}>Publiser resultatet eller prøv igjen.</code>
+                <code className={homeStyles.code}>{content.publish[language]}</code>
 
                 <div className={styles.sources}>
 
-                    <div className={homeStyles.card} onClick={()=>resetGame()}>Spill igjen</div>
+                    <div className={homeStyles.card} onClick={()=>resetGame()}>{content.again[language]}</div>
                     
                     <div className={`${homeStyles.card} ${styles.cardSubmit}`}>
-                        <input className={styles.input} placeholder={"brukernavn"} type={"text"} onChange={(evt)=>SetUsername(evt.target.value)}/> 
+                        <input className={styles.input} placeholder={content.username[language]} type={"text"} onChange={(evt)=>SetUsername(evt.target.value)}/> 
                         
                         <ReCAPTCHA
                             size={"compact"}
@@ -189,7 +233,7 @@ function Game({quiz}) {
                             sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                         />
                         
-                        <button className={styles.button} onClick={()=>handleSubmit()}>Send</button>
+                        <button className={styles.button} onClick={()=>handleSubmit()}>{content.submit[language]}</button>
                     </div>
 
                 </div>
