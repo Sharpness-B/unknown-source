@@ -20,7 +20,7 @@ export const sources = {
             CNN: {
                 rssEndpoint: "http://rss.cnn.com/rss/edition.rss"
             },
-            FOX: {
+            "Fox News": {
                 rssEndpoint: "https://moxie.foxnews.com/feedburner/latest.xml"
             }
         }
