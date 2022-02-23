@@ -1,6 +1,6 @@
 Guess the publisher of the latest top headlines! How biased is the news? Can you differentiate them and make it to the leaderboard?
 
-Give it a go at [ukjent-kilde-sharpness-b.vercel.app](https://ukjent-kilde-sharpness-b.vercel.app)
+Give it a go at [ukjent-kilde-sharpness-b.vercel.app](https://unknown-source.vercel.app)
 
 ## Architecture
 ![architecture](readme_images/architecture.png?raw=true)
