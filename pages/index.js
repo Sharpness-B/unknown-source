@@ -24,7 +24,6 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>{content.title[language]}</title>
-        <meta name="description" content="Gjett nyhetskilden" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
