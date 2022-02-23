@@ -1,7 +1,7 @@
 .container {
-    position: sticky;
+    position: fixed;
     top: 1rem;
-    left: 0;
+    left: 1rem;
 }
 
 .quizswitch {
