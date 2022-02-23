@@ -126,7 +126,7 @@ function Game({quiz}) {
         SetScore(0)
         SetRound(r => r+1)
         SetGameState("game")
-        location.href = "#spill";
+        // location.href = "#spill";
     }
 
     // reset on new quiz choice
