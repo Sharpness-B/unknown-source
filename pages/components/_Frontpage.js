@@ -1,6 +1,11 @@
 import styles from '../../styles/Home.module.css'
 
-function Frontpage() {
+function Frontpage({language}) {
+  const content = {
+    no: {},
+    en: {}
+  }
+
   return <main className={styles.main}>
     <h1 className={styles.title}>
       Ukjent Kilde
