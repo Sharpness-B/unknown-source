@@ -11,7 +11,7 @@ import { useState } from 'react'
 
 export default function Home() {
   const [quiz, setQuiz] = useState("USA")
-  const [language, setLanguage] = useState("no")
+  const [language, setLanguage] = useState("en")
 
   return (
     <div className={styles.container}>
