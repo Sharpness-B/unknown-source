@@ -13,10 +13,17 @@ export default function Home() {
   const [quiz, setQuiz] = useState("USA")
   const [language, setLanguage] = useState("en")
 
+  const content = {
+    title: {
+      no: "Ukjent Kilde",
+      en: "Unknown Source"  
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Ukjent Kilde</title>
+        <title>{content.title[language]}</title>
         <meta name="description" content="Gjett nyhetskilden" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
