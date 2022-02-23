@@ -7,7 +7,7 @@ function Footer() {
         </a> */}
 
         <a href="https://github.com/Sharpness-B/unknown-source/" target="_blank" rel="noreferrer">
-            <img alt="" align="center" src="http://ForTheBadge.com/images/badges/built-with-love.svg"></img>
+            <img alt="built with love" src="http://ForTheBadge.com/images/badges/built-with-love.svg"></img>
         </a>
     </footer>
 }
