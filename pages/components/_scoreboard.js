@@ -4,14 +4,37 @@ import homeStyles from '../../styles/Home.module.css'
 import { useState, useEffect } from 'react'
 
 function Scoreboard({quiz, language}) {
+    const content = {
+        update: {
+            no: "Oppdater",
+            en: "Update"
+        },
+        top10: {
+            no: "Top 10",
+            en: "Top 10"
+        },
+        top24h: {
+            no: "Top 10 siste døgn",
+            en: "Top 10 last 24 hours"
+        },
+        username: {
+            no: "Brukernavn",
+            en: "Username"
+        },
+        score: {
+            no: "Poeng",
+            en: "Score"
+        }
+    }
+
     const [top10, setTop10]   = useState([])
     const [top24h, setTop24h] = useState([])
 
     const [page, setPage] = useState("Top 10")
 
     const controller = {
-        "Top 10": top10,
-        "Top 10 siste døgn": top24h
+        "Top 10":            {data: top10,  text: content.top10[language]},
+        "Top 10 siste døgn": {data: top24h, text: content.top24h[language]}
     }
 
 
@@ -40,20 +63,20 @@ function Scoreboard({quiz, language}) {
     
     return <article id={"toppliste"} className={homeStyles.main}>
         <div>
-            <button className={`${gameStyles.button} ${styles.button} ${styles.orange}`} onClick={()=>setUpdate(n=>n+1)}>Oppdater</button>
-            {Object.keys(controller).map((data, index) => <button className={`${gameStyles.button} ${styles.button}`} key={index} onClick={()=>setPage(data)}>{data}</button>)}
+            <button className={`${gameStyles.button} ${styles.button} ${styles.orange}`} onClick={()=>setUpdate(n=>n+1)}>{content.update[language]}</button>
+            {Object.keys(controller).map((data, index) => <button className={`${gameStyles.button} ${styles.button}`} key={index} onClick={()=>setPage(data)}>{controller[data].text}</button>)}
         </div>
 
         <table>
             <thead>
                 <tr>
-                    <th>Brukernavn</th>
-                    <th>Poeng</th>
+                    <th>{content.username[language]}</th>
+                    <th>{content.score[language]}</th>
                 </tr>
             </thead>
 
             <tbody>
-                { controller[page].map((data, index) => 
+                { controller[page].data.map((data, index) => 
                     <tr key={index}>
                         <td>{data.username}</td>
                         <td>{data.score}</td>
