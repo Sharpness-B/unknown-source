@@ -1,11 +1,28 @@
 export const sources = {
-    NRK: {
-        rssEndpoint: "https://www.nrk.no/toppsaker.rss"
+    Norge: {
+        language: "no",
+        sources: {
+            NRK: {
+                rssEndpoint: "https://www.nrk.no/toppsaker.rss"
+            },
+            VG: {
+                rssEndpoint: "https://www.vg.no/rss/feed"
+            },
+            Aftenposten: {
+                rssEndpoint: "https://www.aftenposten.no/rss"
+            }
+        }
     },
-    VG: {
-        rssEndpoint: "https://www.vg.no/rss/feed"
-    },
-    Aftenposten: {
-        rssEndpoint: "https://www.aftenposten.no/rss"
+
+    USA: {
+        language: "en",
+        sources: {
+            CNN: {
+                rssEndpoint: "http://rss.cnn.com/rss/edition.rss"
+            },
+            FOX: {
+                rssEndpoint: "https://moxie.foxnews.com/feedburner/latest.xml"
+            }
+        }
     }
 };

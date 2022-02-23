@@ -4,6 +4,7 @@ import Parser from "rss-parser"
 let parser = new Parser()
 
 export default async function validateAnswer(req, res) {
+    const quiz = (req.query.quiz || (req.body && req.body.quiz))
     const encryptedTitle = (req.query.encryptedTitle || (req.body && req.body.encryptedTitle))
     const encryptionSecret = process.env.NEXT_PUBLIC_CRYOTO_SECRET
     
@@ -12,9 +13,9 @@ export default async function validateAnswer(req, res) {
     const title = bytes.toString(cryptoJs.enc.Utf8)
 
     let correct
-    const keys = Object.keys(sources)
+    const keys = Object.keys(sources[quiz].sources)
     for (const key of keys) {
-        const feed = await parser.parseURL(sources[ key ].rssEndpoint)
+        const feed = await parser.parseURL(sources[quiz].sources[ key ].rssEndpoint)
         const article = feed.items.find(e => e.title === title)
 
         const isCorrect = typeof article !== "undefined"

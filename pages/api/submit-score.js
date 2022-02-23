@@ -19,6 +19,7 @@ export default async function submitScore(req, res) {
     const username       = (req.query.username       || (req.body && req.body.username))
     const score          = (req.query.score          || (req.body && req.body.score))
     const recaptchaToken = (req.query.recaptchaToken || (req.body && req.body.recaptchaToken))
+    const quiz           = (req.query.quiz           || (req.body && req.body.quiz))
 
     
 
@@ -45,7 +46,7 @@ export default async function submitScore(req, res) {
         score: score,
         timestamp: new Date()
     }
-    await setDoc( doc(firestore, "results", id), body );
+    await setDoc( doc(firestore, quiz, id), body );
 
     res.status(200).json(
         result

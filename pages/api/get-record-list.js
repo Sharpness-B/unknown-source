@@ -6,6 +6,9 @@ const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 
 export default async function getRecordList(req, res) {    
+    
+    const quiz = (req.query.quiz || (req.body && req.body.quiz))
+
     const data = {
         top10: [],
         top10last24h: []
@@ -14,7 +17,7 @@ export default async function getRecordList(req, res) {
 
     
     // top 10 results 
-    const qTop10 = query(collection(firestore, "results"), orderBy("score", "desc"), limit(10))
+    const qTop10 = query(collection(firestore, quiz), orderBy("score", "desc"), limit(10))
     
     const querySnapshotTop10 = await getDocs(qTop10)
 
@@ -26,7 +29,7 @@ export default async function getRecordList(req, res) {
 
     // top 10 last 24 hours
     const ago24h = new Date( new Date().getTime() - (24*60*60*1000) )
-    const qTop10last24h = query(collection(firestore, "results"), where("timestamp", ">", ago24h), limit(10))
+    const qTop10last24h = query(collection(firestore, quiz), where("timestamp", ">", ago24h), limit(10))
     
     const querySnapshotTop10last24h = await getDocs(qTop10last24h)
 

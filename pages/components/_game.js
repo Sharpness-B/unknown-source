@@ -9,20 +9,27 @@ function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
-async function fetchQuestion() {
-    const response = await fetch("api/get-question")
+async function fetchQuestion(quiz) {
+    const response = await fetch("api/get-question", {
+        method: "POST", 
+        body: JSON.stringify( {
+            quiz: quiz
+        } ),
+        headers: {'Content-Type': 'application/json'},
+    })
     const question = await response.json()
     return question
 }
 
-async function checkAnswer(title) {
+async function checkAnswer(title, quiz) {
     const encryptionSecret = process.env.NEXT_PUBLIC_CRYOTO_SECRET
     const encryptedTitle = cryptoJs.AES.encrypt(title, encryptionSecret).toString()
 
     const response = await fetch("api/validate-answer", {
         method: "POST", 
         body: JSON.stringify( {
-            encryptedTitle: encryptedTitle
+            encryptedTitle: encryptedTitle,
+            quiz: quiz
         } ),
         headers: {'Content-Type': 'application/json'},
     })
@@ -31,13 +38,14 @@ async function checkAnswer(title) {
     return result
 }
 
-async function postScore(username, score, recaptchaToken) {
+async function postScore(username, score, recaptchaToken, quiz) {
     const response = await fetch("api/submit-score", {
         method: "POST", 
         body: JSON.stringify( {
             username: username,
             score: score,
-            recaptchaToken: recaptchaToken
+            recaptchaToken: recaptchaToken,
+            quiz: quiz
         } ),
         headers: {'Content-Type': 'application/json'},
     })
@@ -46,7 +54,7 @@ async function postScore(username, score, recaptchaToken) {
     return result
 }
 
-function Game() {
+function Game({quiz}) {
     <Script src="https://www.google.com/recaptcha/api.js" async></Script>
     const recaptchaRef = useRef();
     const [recaptchaToken, SetRecaptchaToken] = useState("")
@@ -72,7 +80,7 @@ function Game() {
     }, [alternatives.length]);
 
     useEffect(() => {
-        fetchQuestion().then(question => {
+        fetchQuestion(quiz).then(question => {
             SetQuestion(question.title)
             SetAlternatives(question.alternatives)
         })
@@ -83,7 +91,7 @@ function Game() {
         SetGameState("validating")
 
         let correctRef
-        checkAnswer(question)
+        checkAnswer(question, quiz)
             .then(result => {
                 correctRef = elRefs[ alternatives.indexOf(result.correct) ]
                 
@@ -121,6 +129,9 @@ function Game() {
         location.href = "#spill";
     }
 
+    // reset on new quiz choice
+    useEffect(resetGame, [quiz])
+
     async function updateRecaptchaToken() {
         const token = await recaptchaRef.current.getValue();
         SetRecaptchaToken(token)
@@ -136,7 +147,7 @@ function Game() {
             return
         }
 
-        postScore(username, score, recaptchaToken)
+        postScore(username, score, recaptchaToken, quiz)
 
         location.href = "#toppliste"
     }

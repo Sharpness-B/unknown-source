@@ -3,7 +3,7 @@ import gameStyles from '../../styles/Game.module.css'
 import homeStyles from '../../styles/Home.module.css'
 import { useState, useEffect } from 'react'
 
-function Scoreboard() {
+function Scoreboard({quiz}) {
     const [top10, setTop10]   = useState([])
     const [top24h, setTop24h] = useState([])
 
@@ -18,7 +18,13 @@ function Scoreboard() {
 
     const [update, setUpdate] = useState(0)
     useEffect(() => {
-        fetch("api/get-record-list")
+        fetch("api/get-record-list", {
+            method: "POST", 
+            body: JSON.stringify( {
+                quiz: quiz
+            } ),
+            headers: {'Content-Type': 'application/json'},
+        })
             .then(response => response.json())
             .then(results => {
                 setTop10(results.top10)
