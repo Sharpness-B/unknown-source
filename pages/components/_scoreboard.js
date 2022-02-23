@@ -3,7 +3,7 @@ import gameStyles from '../../styles/Game.module.css'
 import homeStyles from '../../styles/Home.module.css'
 import { useState, useEffect } from 'react'
 
-function Scoreboard({quiz}) {
+function Scoreboard({quiz, language}) {
     const [top10, setTop10]   = useState([])
     const [top24h, setTop24h] = useState([])
 
@@ -30,7 +30,7 @@ function Scoreboard({quiz}) {
                 setTop10(results.top10)
                 setTop24h(results.top10last24h)
             })
-    }, [update]) 
+    }, [update, language]) 
 
     useEffect(() => {
         setInterval( ()=>setUpdate(n=>n+1), 15000)
