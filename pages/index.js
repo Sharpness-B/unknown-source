@@ -21,10 +21,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <QuizSwitch quiz={quiz} setQuiz={setQuiz} language={language} setLanguage={setLanguage} />
-      <Frontpage />
-      <Game quiz={quiz} />
-      <Scoreboard quiz={quiz} />
+      <QuizSwitch language={language} quiz={quiz} setQuiz={setQuiz} setLanguage={setLanguage} />
+      <Frontpage  language={language} />
+      <Game       language={language} quiz={quiz} />
+      <Scoreboard language={language} quiz={quiz} />
       <Footer />
     </div>
   )
