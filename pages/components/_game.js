@@ -159,7 +159,7 @@ function Game({quiz}) {
                 <code className={homeStyles.code}>{!question ? null : `Poeng: ${score}`}</code>
                 <h2>{question}</h2>
                 <code className={homeStyles.code}>{!question ? null : "Hvem har publisert denne overskriften?"}</code>
-                <div className={styles.sources}>
+                <div><div className={styles.sources}>
                     { alternatives.map((source, index) => 
                         <div 
                             key={index} 
@@ -167,7 +167,7 @@ function Game({quiz}) {
                             className={homeStyles.card} 
                             onClick={()=>handleClick(source)}>{source}
                         </div>) }
-                </div>
+                </div></div>
             </div>
         : 
             <div>
