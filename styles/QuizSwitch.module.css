@@ -37,6 +37,7 @@
         position: sticky;
         width: 100%;
         top: 0;
+        background: white;
         padding-top: 0.5rem solid white;
     }
     .quizswitch {
@@ -44,8 +45,6 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        background: white;
         border-bottom: 1px solid black;
     }
-  }
-  
+}
