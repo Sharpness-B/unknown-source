@@ -1,4 +1,16 @@
 export const sources = {
+    USA: {
+        language: "en",
+        sources: {
+            CNN: {
+                rssEndpoint: "http://rss.cnn.com/rss/edition.rss"
+            },
+            "Fox News": {
+                rssEndpoint: "https://moxie.foxnews.com/feedburner/latest.xml"
+            }
+        }
+    },
+
     Norge: {
         language: "no",
         sources: {
@@ -12,17 +24,7 @@ export const sources = {
                 rssEndpoint: "https://www.aftenposten.no/rss"
             }
         }
-    },
-
-    USA: {
-        language: "en",
-        sources: {
-            CNN: {
-                rssEndpoint: "http://rss.cnn.com/rss/edition.rss"
-            },
-            "Fox News": {
-                rssEndpoint: "https://moxie.foxnews.com/feedburner/latest.xml"
-            }
-        }
     }
 };
+
+// https://loop24.no/loopsign/rss-feeds/

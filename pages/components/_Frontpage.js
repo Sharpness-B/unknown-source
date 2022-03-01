@@ -8,7 +8,7 @@ function Frontpage({language}) {
     },
     description1: {
       no: "Les aktuelle overskrifter fra nyhetene og gjett avisen!",
-      en: "Read current headlines from the news and guess the newspaper!" 
+      en: "Guess the publisher of the latest top headlines!" 
     },
     description2: {
       no: "Hvor uavhengige er egentlig de norske mediene?",
