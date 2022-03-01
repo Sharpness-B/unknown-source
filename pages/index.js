@@ -25,6 +25,7 @@ export default function Home() {
       <Head>
         <title>{content.title[language]}</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Guess the publisher of the latest top headlines! How biased is the news? Can you differentiate them and make it to the leaderboard?" />
       </Head>
 
       <QuizSwitch language={language} quiz={quiz} setQuiz={setQuiz} setLanguage={setLanguage} />
