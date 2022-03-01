@@ -30,11 +30,21 @@
 }
 
 @media (max-width: 950px) {
-    /* .quizswitch {
-      flex-direction: column;
-    } */
     .p {
         display: none;
+    }
+    .container {
+        width: 100%;
+        top: 0;
+        padding-top: 0.5rem solid white;
+    }
+    .quizswitch {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background: white;
+        border-bottom: 1px solid black;
     }
   }
   
