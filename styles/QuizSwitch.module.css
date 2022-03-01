@@ -35,10 +35,11 @@
     }
     .container {
         position: sticky;
-        width: 100%;
+        width: 100vw;
+        margin: -1rem;
         top: 0;
-        background: white;
         padding-top: 0.5rem solid white;
+        background: white;
     }
     .quizswitch {
         width: 100%;
