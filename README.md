@@ -10,7 +10,7 @@ Give it a go at [https://unknown-source.vercel.app](https://unknown-source.verce
 ## Architecture
 ![architecture](readme_images/architecture.png?raw=true)
 
-## A dynamic game depending that reflects the state of the world
+## A dynamic game that reflects the current state of the world
 ![screenshot_category_norge](readme_images/screenshot_category_norge.png?raw=true)
 ![screenshot_category_usa](readme_images/screenshot_category_usa.png?raw=true)
 
