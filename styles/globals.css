@@ -8,6 +8,7 @@ body {
   scroll-behavior: smooth;
 
   overflow-x: hidden;
+  height: 100%; /* for pos sticky to work with hidden overflow */
 }
 
 a {
